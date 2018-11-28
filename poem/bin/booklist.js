@@ -10,6 +10,13 @@ var baseUrl = 'http://so.gushiwen.org/guwen/Default.aspx?p=';
 var totalListPage = 1;
 var origin = 'http://so.gushiwen.org';
 
+//通过闭包 生成keyName  @prefix 输入前缀
+let count = 10000;
+const prefix = 'gwbook';
+const _getKeyName = (prefix) => {
+    return prefix + count++;
+}
+
 const booklistInit = async () => {
     const pageUrlList = getPageUrlList(totalListPage, baseUrl);
     let res = await getBookList(pageUrlList);
@@ -36,6 +43,7 @@ function getBookList(pageUrlList) {
                 reject(false)
                 return
             }
+            console.log(result, 'result')
             let booklist = getNewBookListArray(result);
             saveDB(booklist, resolve);
         })
@@ -62,7 +70,7 @@ function getCurPageBookList($, body) {
     let BookList = [];
     BookListDom.each(function (index, el) {
         let obj = {
-            // dbName: getDBName(prefix),
+            key: _getKeyName(prefix),
             bookName: $(el).find('p b').text(), // 书名
             bookUrl: origin + $(el).find('p a').attr('href'), //书目链接
             bookDetail: $(el).find('p').eq(1).text().trim(),// 书籍介绍

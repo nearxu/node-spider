@@ -30,9 +30,16 @@ var BookSchema = new mongoose.Schema(
 );
 var Book = mongoose.model('book', BookSchema)
 
+var testSchema = new mongoose.Schema({
+    name: String
+})
+
+var test = mongoose.model('test', testSchema)
+
 module.exports = {
     Author,
-    Book
+    Book,
+    test
 }
 
 

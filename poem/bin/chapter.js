@@ -5,7 +5,7 @@ const fs = require('fs');
 const async = require("async");
 
 const bookHelper = require('../helper/bookhelper');
-var { bookListModel, chapterlistModel } = require('../model/guwen');
+var { bookListModel, chapterListModel } = require('../model/guwen');
 const { sleep, getListUrlAndTitle, getSectionFromChapter } = require('../helper/utils');
 
 
