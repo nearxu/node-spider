@@ -1,0 +1,23 @@
+{
+  "name": "shi",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node bin/index.js"
+  },
+  "author": "",
+  "dependencies": {
+    "async": "^2.6.0",
+    "cheerio": "^0.19.0",
+    "colors": "^1.1.2",
+    "iconv-lite": "^0.4.18",
+    "log4js": "^2.4.1",
+    "mongoose": "^4.6.5",
+    "multi-progress": "^1.0.0",
+    "q": "^1.4.1",
+    "request": "^2.64.0"
+  },
+  "license": "ISC"
+}
