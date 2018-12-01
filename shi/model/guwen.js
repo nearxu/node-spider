@@ -28,7 +28,8 @@ const bookContent = mongoose.Schema({
 })
 
 const classModel = conno.model('class', bookClass);
-const content
+const contentModel = conno.model('content', bookContent);
 module.exports = {
-    classModel
+    classModel,
+    contentModel
 }
