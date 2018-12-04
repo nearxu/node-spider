@@ -8,7 +8,8 @@ const baseUrl = 'https://www.gushiwen.org/shiwen/';
 const originUrl = 'https://www.gushiwen.org';
 
 const contentInit = async () => {
-    const list = await getClassList(classModel)
+    const list = await getClassList(classModel);
+    console.log(list, 'list')
     let res = await asyncGetContent(list)
 }
 
@@ -18,7 +19,7 @@ const getClassList = async (model) => {
     })
     return list
 }
-function asyncGetContent(list) {
+const asyncGetContent = list => {
     return new Promise((resolve, reject) => {
         async.mapLimit(list, 3, (series, callback) => {
             let doc = series._doc;
@@ -55,15 +56,38 @@ function getHtmlInfo(url, info, callback) {
                 }
                 list.push(item);
             })
-            insertCollection(contentModel, list)
+            saveDB(list, callback)
         }
     })
 
 }
 
+const saveDB = async (list, callback) => {
+    console.log(list, 'list11')
+    if (list.length === 0) {
+        callback(null, null);
+        return;
+    }
+
+    await sleep(1000);
+    let falg = await insertCollection(contentModel.list)
+    if (!falg) {
+        console.log('数据插入失败！！！')
+    }
+    callback(null, null)
+}
+
 const insertCollection = async (model, list) => {
     let res = await model.collection.insert(list);
+    return res;
 
+}
+
+const sleep = async (times) => {
+    await new Promise((resolve) => {
+        setTimeout(resolve, times);
+    })
+    return true;
 }
 
 module.exports = contentInit;

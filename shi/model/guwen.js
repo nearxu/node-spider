@@ -21,9 +21,7 @@ const bookContent = mongoose.Schema({
     key: String,
     name: String,
     title: String,
-    year: String,
     content: String,
-    label: String,
     good: Number
 })
 
